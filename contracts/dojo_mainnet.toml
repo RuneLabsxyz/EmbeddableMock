@@ -1,0 +1,26 @@
+[world]
+name = "Realms World"
+website = "https://realms.world/"
+description = "DNC"
+seed = "DNC"
+
+[env]
+chain_id = "SN_MAINNET"
+rpc_url = "https://api.cartridge.gg/x/starknet/mainnet"
+world_address = "0x5c6d0020a9927edca9ddc984b97305439c0b32a1ec8d3f0eaf6291074cc9799"
+world_block = 1385481
+
+[namespace]
+default = "ds_v1_2_0"
+
+[writers]
+"ds_v1_2_0" = [
+    "ds_v1_2_0-game_systems",
+    "ds_v1_2_0-battle_systems",
+    "ds_v1_2_0-config_systems",
+]
+
+[init_call_args]
+"ds_v1_2_0-game_systems" = [
+    "0x000B39b235b44c53a2E9F0c5D35939D9C8E8dAFDd0a2ba2E695b501Fc1e9fd2f",
+]

@@ -1,4 +1,1 @@
-# Dark Shuffle
-Deck-building game on Starknet
-
-https://darkshuffle.io
+Gutted version of dark shuffle to test implementing embeddable games quest tiles

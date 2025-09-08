@@ -1,28 +1,41 @@
 [world]
 name = "Provable Games"
-description = "PG Sepolia World"
-seed = "pg_sepolia_await_10"
-
-[namespace]
-default = "ds_v1_2_0"
-
-[writers]
-"ds_v1_2_0" = [
-    "ds_v1_2_0-game_systems",
-    "ds_v1_2_0-battle_systems",
-    "ds_v1_2_0-draft_systems",
-    "ds_v1_2_0-map_systems",
-    "ds_v1_2_0-config_systems",
-]
+description = "DNC"
+seed = "pg-slot-10"
 
 [env]
-chain_id = "WP_PG"
-rpc_url = "https://api.cartridge.gg/x/pg/katana"
-account_address = "0x5b6b8189bb580f0df1e6d6bec509ff0d6c9be7365d10627e0cf222ec1b47a71"
-private_key = "0x33003003001800009900180300d206308b0070db00121318d17b5e6262150b"
-world_address = "0x04254b770ec69289dae26a6b488cc75689b3765171423cae8d648323ae4de44a"
+rpc_url = "https://api.cartridge.gg/x/pg-slot-4/katana"
+# Default account for katana with seed = 0
+world_address = "0x344e910f93abecadf09691825a3b59fb177f9f8762c07a0947c3e9dc25fd8db"
+
+[namespace]
+default = "ls_0_0_6"
+
+[writers]
+"ls_0_0_6" = [
+    "ls_0_0_6-game_systems",
+    "ls_0_0_6-game_token_systems",
+    "ls_0_0_6-settings_systems",
+    "ls_0_0_6-beast_systems",
+    "ls_0_0_6-adventurer_systems",
+    "ls_0_0_6-objectives_systems"
+]
+
+[migration]
+order_inits = [
+    "ls_0_0_6-game_systems",
+    "ls_0_0_6-loot_systems",
+    "ls_0_0_6-renderer_systems",
+    "ls_0_0_6-adventurer_systems",
+    "ls_0_0_6-beast_systems",
+    "ls_0_0_6-game_token_systems", 
+    "ls_0_0_6-settings_systems", 
+    "ls_0_0_6-objectives_systems"
+]
 
 [init_call_args]
-"ds_v1_2_0-game_systems" = [
-    "0x0238df9Efd27Aba2ccB0bdC97a4cf440caA403e9ed3f1883294Ab6CDBA6C5282",
+"ls_0_0_6-game_token_systems" = [
+    "0x127fd5f1fe78a71f8bcd1fec63e3fe2f0486b6ecd5c86a0466c3a21fa5cfcec",
+    "0x01d3950941c7cbb80160d2fd3f112bb9885244833e547b298dfed040ce1e140f", # denshokan_address
+    "1" # Option::None for renderer address
 ]

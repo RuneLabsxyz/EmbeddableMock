@@ -1,17 +1,40 @@
 [world]
 name = "Provable Games"
-description = "Test Embeded game"
-seed = "asdfasdfasdf"
-
-[namespace]
-default = "test"
-
-[writers]
-"test" = [
-    "test-game_systems",
-    "test-config_systems",
-]
+description = "DNC"
+seed = "DNC"
 
 [env]
 rpc_url = "https://api.cartridge.gg/x/starknet/sepolia"
-world_address = "0x01bfa92665fb815c9ec5f37c562a5c9a06fdf23ce022c1d33d4ac07cef5ad80c"
+world_address = "0x757092d4bb00c86fd6d96429fc351f4a7d0409e08cc29d62eddd1c284cac6dc"
+
+[namespace]
+default = "ls_0_0_6"
+
+[writers]
+"ls_0_0_6" = [
+    "ls_0_0_6-game_systems", 
+    "ls_0_0_6-game_token_systems", 
+    "ls_0_0_6-settings_systems",
+    "ls_0_0_6-beast_systems",
+    "ls_0_0_6-adventurer_systems",
+    "ls_0_0_6-objectives_systems"
+]
+
+[migration]
+order_inits = [
+    "ls_0_0_6-game_systems",
+    "ls_0_0_6-loot_systems",
+    "ls_0_0_6-renderer_systems",
+    "ls_0_0_6-adventurer_systems",
+    "ls_0_0_6-beast_systems",
+    "ls_0_0_6-game_token_systems", 
+    "ls_0_0_6-settings_systems", 
+    "ls_0_0_6-objectives_systems"
+]
+
+[init_call_args]
+"ls_0_0_6-game_token_systems" = [
+    "0x065d2AB17338b5AffdEbAF95E2D79834B5f30Bac596fF55563c62C3c98700150", # account address
+    "0x0610aba32da98547f9f65fe0195cc60c08f1ef6fa2f2a0fc03e35f1c29319fd3", # denshokan address
+    "1" # Option::None for renderer address
+]

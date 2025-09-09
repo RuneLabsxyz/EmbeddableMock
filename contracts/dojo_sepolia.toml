@@ -1,39 +1,28 @@
 [world]
 name = "Provable Games"
 description = "DNC"
-seed = "DNC"
+seed = "mock"
 
 [env]
-rpc_url = "https://api.cartridge.gg/x/starknet/sepolia"
-world_address = "0x757092d4bb00c86fd6d96429fc351f4a7d0409e08cc29d62eddd1c284cac6dc"
+rpc_url = "https://api.cartridge.gg/x/starknet/sepolia/rpc/v0_8"
+account_address = "0x0694182a014b39855a1b139961a3f39e7d4b43527b30d892a630d66a2abe3780"
+private_key = "0x0430638cc3ef026ad7a74d9ad143bfc15bf303cea0be1c972ab1f280c90a531a"
 
 [namespace]
-default = "ls_0_0_6"
+default = "mock"
 
 [writers]
-"ls_0_0_6" = [
-    "ls_0_0_6-game_systems", 
-    "ls_0_0_6-game_token_systems", 
-    "ls_0_0_6-settings_systems",
-    "ls_0_0_6-beast_systems",
-    "ls_0_0_6-adventurer_systems",
-    "ls_0_0_6-objectives_systems"
+"mock" = [
+    "mock-game_systems", 
+    "mock-game_token_systems", 
+    "mock-settings_systems",
+    "mock-adventurer_systems",
+    "mock-objectives_systems"
 ]
 
-[migration]
-order_inits = [
-    "ls_0_0_6-game_systems",
-    "ls_0_0_6-loot_systems",
-    "ls_0_0_6-renderer_systems",
-    "ls_0_0_6-adventurer_systems",
-    "ls_0_0_6-beast_systems",
-    "ls_0_0_6-game_token_systems", 
-    "ls_0_0_6-settings_systems", 
-    "ls_0_0_6-objectives_systems"
-]
 
 [init_call_args]
-"ls_0_0_6-game_token_systems" = [
+"mock-game_token_systems" = [
     "0x065d2AB17338b5AffdEbAF95E2D79834B5f30Bac596fF55563c62C3c98700150", # account address
     "0x0610aba32da98547f9f65fe0195cc60c08f1ef6fa2f2a0fc03e35f1c29319fd3", # denshokan address
     "1" # Option::None for renderer address

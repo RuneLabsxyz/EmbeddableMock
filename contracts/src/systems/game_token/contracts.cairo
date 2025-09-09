@@ -10,7 +10,6 @@ mod game_token_systems {
     use death_mountain::constants::world::DEFAULT_NS;
     use death_mountain::libs::game::ImplGameLibs;
     use death_mountain::models::adventurer::adventurer::{ImplAdventurer};
-    use death_mountain::models::adventurer::bag::{ImplBag};
     use death_mountain::systems::adventurer::contracts::{IAdventurerSystemsDispatcherTrait};
     use dojo::world::{WorldStorage, WorldStorageTrait};
     use game_components_minigame::interface::IMinigameTokenData;
@@ -79,11 +78,11 @@ mod game_token_systems {
             .minigame
             .initializer(
                 creator_address,
-                "Death Mountain",
-                "Death Mountain is an onchain dungeon generator",
-                "Provable Games",
-                "Provable Games",
-                "Dungeon Generator",
+                "Embeddable Mock",
+                "Mock for testing embeddable games",
+                "Embeddable Mock",
+                "Embeddable Mock",
+                "Embeddable Mock",
                 "https://deathmountain.gg/favicon.png",
                 Option::None, // color
                 Option::None, // client_url
@@ -107,7 +106,7 @@ mod game_token_systems {
         fn game_over(self: @ContractState, token_id: u64) -> bool {
             let game_libs = ImplGameLibs::new(self.world(@DEFAULT_NS()));
             let adventurer = game_libs.adventurer.get_adventurer(token_id);
-            adventurer.health == 0
+            adventurer.action_count > 5
         }
     }
 

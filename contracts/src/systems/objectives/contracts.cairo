@@ -63,7 +63,7 @@ mod objectives_systems {
             let world: WorldStorage = self.world(@DEFAULT_NS());
             let objective_score: ScoreObjective = world.read_model(objective_id);
             let game_libs = ImplGameLibs::new(world);
-            let (mut adventurer, _) = game_libs.adventurer.load_assets(token_id);
+            let mut adventurer = game_libs.adventurer.get_adventurer(token_id);
             adventurer.xp.into() >= objective_score.score
         }
     }

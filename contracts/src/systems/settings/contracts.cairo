@@ -1,23 +1,19 @@
 // SPDX-License-Identifier: MIT
 
 use death_mountain::models::adventurer::adventurer::Adventurer;
-use death_mountain::models::adventurer::bag::Bag;
-use death_mountain::models::game::{GameSettings, StatsMode};
+use death_mountain::models::game::{GameSettings};
 use starknet::ContractAddress;
 
 #[starknet::interface]
 pub trait ISettingsSystems<T> {
     fn add_settings(
         ref self: T,
-        vrf_address: ContractAddress,
         name: felt252,
         description: ByteArray,
         adventurer: Adventurer,
-        bag: Bag,
         game_seed: u64,
         game_seed_until_xp: u16,
         in_battle: bool,
-        stats_mode: StatsMode,
         base_damage_reduction: u8,
         market_size: u8,
     ) -> u32;
@@ -31,11 +27,8 @@ mod settings_systems {
     use death_mountain::constants::world::{DEFAULT_NS, VERSION};
     use death_mountain::libs::settings::generate_settings_array;
     use death_mountain::models::adventurer::adventurer::{Adventurer, ImplAdventurer};
-    use death_mountain::models::adventurer::bag::{Bag, ImplBag};
-    use death_mountain::models::adventurer::equipment::{IEquipment, ImplEquipment};
-    use death_mountain::models::game::{GameSettings, GameSettingsMetadata, SettingsCounter, StatsMode};
+    use death_mountain::models::game::{GameSettings, GameSettingsMetadata, SettingsCounter};
     use death_mountain::utils::renderer::encoding::U256BytesUsedTraitImpl;
-    use death_mountain::utils::vrf::VRFImpl;
 
     use dojo::model::ModelStorage;
     use dojo::world::{WorldStorage, WorldStorageTrait};
@@ -80,13 +73,10 @@ mod settings_systems {
 
         let default_settings = GameSettings {
             settings_id: 0,
-            vrf_address: VRFImpl::cartridge_vrf_address(),
             adventurer: ImplAdventurer::new(0),
-            bag: ImplBag::new(),
             game_seed: 0,
             game_seed_until_xp: 0,
             in_battle: false,
-            stats_mode: StatsMode::Dodge,
             base_damage_reduction: 50,
             market_size: 25,
         };
@@ -127,7 +117,7 @@ mod settings_systems {
         fn settings_exist(self: @ContractState, settings_id: u32) -> bool {
             let world: WorldStorage = self.world(@DEFAULT_NS());
             let settings: GameSettings = world.read_model(settings_id);
-            settings.adventurer.health != 0
+            settings.adventurer.action_count != 0
         }
     }
 
@@ -155,20 +145,17 @@ mod settings_systems {
     impl SettingsSystemsImpl of ISettingsSystems<ContractState> {
         fn add_settings(
             ref self: ContractState,
-            vrf_address: ContractAddress,
             name: felt252,
             description: ByteArray,
             adventurer: Adventurer,
-            bag: Bag,
             game_seed: u64,
             game_seed_until_xp: u16,
             in_battle: bool,
-            stats_mode: StatsMode,
             base_damage_reduction: u8,
             market_size: u8,
         ) -> u32 {
             // Validate input parameters
-            self._validate_settings(adventurer, bag, game_seed, game_seed_until_xp, base_damage_reduction, market_size);
+            self._validate_settings(adventurer, game_seed, game_seed_until_xp, base_damage_reduction, market_size);
 
             let mut world: WorldStorage = self.world(@DEFAULT_NS());
             // increment settings counter
@@ -176,13 +163,10 @@ mod settings_systems {
             settings_count.count += 1;
             let game_settings = GameSettings {
                 settings_id: settings_count.count,
-                vrf_address,
                 adventurer,
-                bag,
                 game_seed,
                 game_seed_until_xp,
                 in_battle,
-                stats_mode,
                 base_damage_reduction,
                 market_size,
             };
@@ -253,44 +237,14 @@ mod settings_systems {
         fn _validate_settings(
             ref self: ContractState,
             adventurer: Adventurer,
-            bag: Bag,
             game_seed: u64,
             game_seed_until_xp: u16,
             base_damage_reduction: u8,
             market_size: u8,
         ) {
-            // Validate adventurer health is within reasonable bounds
-            assert!(adventurer.health > 0, "Adventurer health must be positive");
-            assert!(adventurer.health <= 1023, "Adventurer health cannot exceed 1023");
-
             // Validate adventurer XP is reasonable
             assert!(adventurer.xp <= 30000, "Adventurer XP cannot exceed 30000");
 
-            // Validate adventurer gold is reasonable
-            assert!(adventurer.gold <= 511, "Adventurer gold cannot exceed 511");
-
-            // Validate adventurer stat upgrades available is reasonable
-            assert!(adventurer.stat_upgrades_available <= 15, "Adventurer stat upgrades available cannot exceed 15");
-            assert!(adventurer.stats.strength <= 31, "Adventurer strength cannot exceed 31");
-            assert!(adventurer.stats.dexterity <= 31, "Adventurer dexterity cannot exceed 31");
-            assert!(adventurer.stats.vitality <= 31, "Adventurer vitality cannot exceed 31");
-            assert!(adventurer.stats.intelligence <= 31, "Adventurer intelligence cannot exceed 31");
-            assert!(adventurer.stats.wisdom <= 31, "Adventurer wisdom cannot exceed 31");
-            assert!(adventurer.stats.charisma <= 31, "Adventurer charisma cannot exceed 31");
-            assert!(adventurer.stats.luck <= 31, "Adventurer luck cannot exceed 31");
-
-            // Validate base_damage_reduction is within reasonable bounds
-            assert!(base_damage_reduction <= 100, "Base damage reduction cannot exceed 100%");
-
-            if (adventurer.item_specials_seed == 0) {
-                assert!(
-                    !adventurer.equipment.has_specials(), "Item specials seed is 0, but adventurer has a special item",
-                );
-                assert!(!bag.has_specials(), "Item specials seed is 0, but bag has a special item");
-            }
-
-            // Validate market_size is within reasonable bounds
-            assert!(market_size <= 31, "Market size cannot exceed 31");
         }
     }
 }

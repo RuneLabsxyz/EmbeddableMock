@@ -1,8 +1,8 @@
 {
   "world": {
     "class_hash": "0x685ed02eefa98fe7e208aa295042e9bbad8029b0d3d6f0ba2b32546efe0a1f9",
-    "address": "0x21e53a100475fc9f7274c005c7878ca318d8e27894123bce47ebc4b6ea79d7",
-    "seed": "mock",
+    "address": "0x6573697987d69a9d6b89dbb301079dd3052bf3ed9cd33713cfb49bd2cdbec26",
+    "seed": "fsda",
     "name": "Provable Games",
     "entrypoints": [
       "uuid",
@@ -1328,7 +1328,7 @@
   },
   "contracts": [
     {
-      "address": "0x1923cec1d5be5f28bffb925e29cad521e29ba8f55d3b9fedfcc7643fbcaf5cd",
+      "address": "0x1fc6ae0e5700c9d3a0644d518b60e44777c2146b6c985763c75b4b03498b8f7",
       "class_hash": "0x61370db50e9570992ed1313f0d54d316a3a7617bacb42810d356640de7d4e6",
       "abi": [
         {
@@ -1581,7 +1581,7 @@
       ]
     },
     {
-      "address": "0x431106c2d74f253a67815570bbf67cacf804d840ad00e4b6c14993ce3c45b06",
+      "address": "0x368e82bdb7b5308228c08015c3f9c1fccf0096cd941efb30f24110e60ffa9e",
       "class_hash": "0x240882ace4564674a657258e0f2a560087b193bae0dae318238fb44fc0e17e8",
       "abi": [
         {
@@ -1798,7 +1798,7 @@
       ]
     },
     {
-      "address": "0x59cd5ee95793fe08a7524c4877bf6b8b8581184a875687879723bc053a32f7e",
+      "address": "0x7d0a722bfc6ccd3526745e304b4e636e75541987849889ebcf74ffce87dd679",
       "class_hash": "0x12a75434dc6bcf530b6622f5d51b17c8a133cbb707ec85d7ccaa31493d55d4e",
       "abi": [
         {
@@ -2376,7 +2376,7 @@
       ]
     },
     {
-      "address": "0x5af431d2cc670dd9eecd4963f1515c7ee96f447571b24f68b74d9432160d94c",
+      "address": "0x461db7a47a840d635d96cd36bde5d1027a8c6aaa8d23cca95ccc7eb69860b1a",
       "class_hash": "0x6fa5df8fb12d514549ba66a7bd58ae6974f0fdf9649c8afbb89ae77b33aba0e",
       "abi": [
         {
@@ -2738,7 +2738,7 @@
       ]
     },
     {
-      "address": "0x612ccbcd18ab2aaff29e9c0246a69bd6b369af7e3530a3cf7464fcd33383d34",
+      "address": "0x44b09c1c9e4fd392d86b65155145065858f18b3c43f7360216ebc38b3a80111",
       "class_hash": "0x5133f2830aded7724816b2c39a4f653b8f834ae30e7e0902c67ec5a3ca144ec",
       "abi": [
         {
@@ -3067,8 +3067,8 @@
       ]
     },
     {
-      "address": "0x1a4f855bae58722eb7037fa27f140e8255cb5f7e90adbcfc38bf97208308b58",
-      "class_hash": "0x58f8e85a712b05d38173bbb3355f78e32afa4fdd3f68ec963350d80ae6d703b",
+      "address": "0x591fab5add40becd4e25eb4f63e8b32689516445319d025068213218f3f3707",
+      "class_hash": "0x361f0753ce68be6fda36b9b93861cdee92fbccda95e1527b322a3032360f4f5",
       "abi": [
         {
           "type": "impl",

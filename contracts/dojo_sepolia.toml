@@ -1,7 +1,7 @@
 [world]
 name = "Provable Games"
 description = "DNC"
-seed = "mock"
+seed = "fsda"
 
 [env]
 rpc_url = "https://api.cartridge.gg/x/starknet/sepolia/rpc/v0_8"

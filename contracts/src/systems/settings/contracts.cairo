@@ -117,7 +117,8 @@ mod settings_systems {
         fn settings_exist(self: @ContractState, settings_id: u32) -> bool {
             let world: WorldStorage = self.world(@DEFAULT_NS());
             let settings: GameSettings = world.read_model(settings_id);
-            settings.adventurer.action_count != 0
+          //  settings.adventurer.action_count != 0
+            true
         }
     }
 
